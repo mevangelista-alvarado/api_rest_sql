@@ -15,21 +15,27 @@ Ejecutar
 
 # Docker
 ## Primera Vez
-1.- Ejecutar en terminal (en la carpeta donde este el archivo `docker-compose.yml`)  
+Antes de iniciar, asegúrate de copiar el archivo `.env.example` a `.env` y ajustarlo con tu configuración:
+```
+cp .env.example .env
+```
+1.- Ejecutar en terminal (en la carpeta donde esté el archivo `docker-compose.yml`)  
 ```
   docker-compose up --build
 ```
-2.- Abrir un terminal nueva y ejecutar en terminal (en la carpeta donde este el archivo `docker-compose.yml` & `init_db.py`)  
+Asegúrate también de tener el archivo `.env` configurado antes de ejecutar los comandos.
+2.- Abrir un terminal nueva y ejecutar en terminal (en la carpeta donde esté el archivo `docker-compose.yml` & `init_db.py`)  
 ```
   docker-compose exec web python init_db.py
 ```
 3.- Visitar en su navegador [http://localhost:5050/](http://localhost:5050/)  
 
 ## Si NO es la primera vez
-1.- Ejecutar en terminal (en la carpeta donde este el archivo `docker-compose.yml`)
+1.- Ejecutar en terminal (en la carpeta donde esté el archivo `docker-compose.yml`)
 ```
   docker-compose up
 ```
+Verifica que el archivo `.env` esté correctamente configurado.
 2.- Visitar en su navegador [http://localhost:5050/](http://localhost:5050/)
 
 # PostgreSQL
@@ -75,3 +81,26 @@ SELECT * FROM post;
 ```
 <img width="454" alt="image" src="https://github.com/user-attachments/assets/365a5005-e12a-4c65-9669-aae5b79ee444" />
 
+# Configuración del archivo .env
+
+Para configurar las variables de entorno necesarias, asegúrate de tener un archivo `.env` en la raíz del proyecto.
+
+Puedes usar el archivo `.env.example` como base. Solo necesitas copiarlo y renombrarlo:
+```
+cp .env.example .env
+```
+
+Asegúrate de revisar y modificar los valores del archivo `.env` según tu configuración. Estas son las variables que debes establecer:
+```
+- `POSTGRES_USER`: Usuario de PostgreSQL (por defecto: `postgres`)
+- `POSTGRES_PASSWORD`: Contraseña de PostgreSQL (por defecto: `postgres`)
+- `POSTGRES_DB`: Nombre de la base de datos (por defecto: `postdb`)
+- `POSTGRES_HOST`: Host del contenedor PostgreSQL (por defecto: `db`)
+- `POSTGRES_PORT`: Puerto del servicio PostgreSQL (por defecto: `5432`)
+- `DATABASE_URL`: Cadena de conexión completa (por ejemplo: `postgresql://postgres:postgres@db:5432/postdb`)
+- `FLASK_ENV`: Entorno de ejecución (por ejemplo: `development` o `production`)
+- `SECRET_KEY`: Clave secreta para la aplicación Flask
+```
+
+
+Estas variables son utilizadas por la aplicación para conectarse a la base de datos y configurar el entorno de ejecución.
